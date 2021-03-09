@@ -3,6 +3,8 @@ import setuptools
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
+requirements = open("./requirements.txt").read().splitlines()
+
 setuptools.setup(
     name="essay-formatter", 
     version="0.0.1",
@@ -24,5 +26,7 @@ setuptools.setup(
     python_requires=">=3.6",
     entry_points = {
         'console_scripts': ['essay-formatter=essay_formatter.__main__:main'],
-    }
+    },
+    install_requires=requirements
+
 )
