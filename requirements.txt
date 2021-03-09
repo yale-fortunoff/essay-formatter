@@ -1,3 +1,4 @@
 beautifulsoup4==4.9.3
 marko==1.0.1
 argcomplete==1.12.2
+PyYAML==5.4.1
