@@ -1,3 +1,6 @@
 venv
-sample-data
 *.egg-info/*
+build
+old-data
+site-content
+data

@@ -1,12 +1,14 @@
 from argparse import ArgumentParser
-import json 
+import json
 from .h2j import h2j
 
 subcommand_name = "html2json"
 
-def register(parser:ArgumentParser):
+
+def register(parser: ArgumentParser):
     parser.add_argument("-i", "--infile", help="input HTML file")
     parser.add_argument("-o", "--outfile", help="output JSON file")
+
 
 def main(args):
 
@@ -21,6 +23,6 @@ def main(args):
         raise Exception(f"Could not convert html to json: {e}")
 
     try:
-        open(args.outfile,"w").write(json.dumps(obj, indent=2))
+        open(args.outfile, "w").write(json.dumps(obj, indent=2))
     except Exception as e:
         raise Exception("fCould not save result as JSON file: {e}")
