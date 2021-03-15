@@ -4,6 +4,8 @@ import marko
 from bs4 import BeautifulSoup
 from yaml import load, Loader
 import json
+
+import yaml
 from ..md2html import m2h
 from ..html2json import h2j
 
@@ -18,9 +20,16 @@ def make_data_files(markdown_dir: str, dest_dir: str):
     if not os.path.exists(dest_dir):
         os.makedirs(dest_dir)
 
-    config_file = os.path.join(dest_dir, "config.json")
-
     config_data = {"essays": []}
+
+    # Load project config file if it exits
+    project_settings = os.path.join(markdown_dir, "settings.yaml")
+    if os.path.exists(project_settings):
+        print(" * Found Project-level settings. Inserting into config.json")
+        project_data = load(open(project_settings).read(), Loader=Loader)
+        config_data["projectData"] = project_data
+
+    config_file = os.path.join(dest_dir, "config.json")
 
     for md_file_path in glob(os.path.join(markdown_dir, "*.md")):
         md_file_name = os.path.basename(md_file_path)
@@ -56,7 +65,7 @@ def make_data_files(markdown_dir: str, dest_dir: str):
         bytes_written = open(json_file_path, "w").write(
             json.dumps(json_content, indent=2)
         )
-        # print(f" + Wrote {bytes_written} bytes to {json_file_path}")
+        print(f" + Wrote {bytes_written} bytes to {json_file_path}")
 
     open(config_file, "w").write(json.dumps(config_data, indent=2))
     print(f" * Wrote config file: {config_file}")
