@@ -1,7 +1,7 @@
 import argparse
 import argcomplete, argparse
 
-from .subcommands import html2json, md2html, build_command as build
+from .subcommands import html2json, md2html, build_command as build, serve
 
 
 def main():
@@ -9,7 +9,7 @@ def main():
 
     subparsers = parser.add_subparsers(dest="subcommand")
 
-    subcommands = [html2json, md2html, build]
+    subcommands = [html2json, md2html, build, serve]
     for subcommand in subcommands:
         subcommand_parser = subparsers.add_parser(subcommand.subcommand_name)
         subcommand.register(subcommand_parser)
