@@ -1,14 +1,15 @@
 from flask import Flask, jsonify, send_from_directory
 import os
 
+
 def serve(build_dir: str):
     app = Flask(__name__, static_folder=build_dir)
     root_dir = os.getcwd()
     print("root_dir", root_dir)
     site_dir = os.path.join(root_dir, build_dir)
 
-    @app.route('/', defaults={'path': 'index.html'})
-    @app.route('/<path:path>')
+    @app.route("/", defaults={"path": "index.html"})
+    @app.route("/<path:path>")
     def serve_file(path):
         print("serve_file", path)
         filename = path
@@ -20,8 +21,6 @@ def serve(build_dir: str):
         else:
             print("File exists")
 
-        
         return send_from_directory(site_dir, filename)
 
     app.run()
-
