@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 requirements = open("./requirements.txt").read().splitlines()
-sample_data_files = glob.glob("essay_formatter/sample-data/**")
+sample_data_files = glob.glob("essay_formatter/sample-data/**.*")
 
 setuptools.setup(
     name="essay-formatter", 
