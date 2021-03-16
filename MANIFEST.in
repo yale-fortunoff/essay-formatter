@@ -1,1 +1,1 @@
-recursive-include essay_formatte/sample-data *
+recursive-include essay_formatter/sample-data *
