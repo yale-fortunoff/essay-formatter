@@ -6,6 +6,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 requirements = open("./requirements.txt").read().splitlines()
 sample_data_files = glob.glob("essay_formatter/sample-data/**")
+print(f"Installing sample data files: {'\n-'.join(sample_data_files)}")
 
 setuptools.setup(
     name="essay-formatter", 
@@ -25,7 +26,7 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     packages=setuptools.find_packages(),
-    data_files=sample_data_files,
+    data_files=("sample-data", sample_data_files),
     python_requires=">=3.6",
     entry_points = {
         'console_scripts': ['essay-formatter=essay_formatter.__main__:main'],
