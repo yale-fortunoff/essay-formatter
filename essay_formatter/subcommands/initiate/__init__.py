@@ -25,7 +25,7 @@ def main(args):
         exit(1)
 
     # Get the sample-data path
-    sample_dir = os.path.abspath(os.path.join(os.path.dirname(__file__),"sample-data"))
+    sample_dir = os.path.abspath(os.path.join(os.path.dirname(__file__),"../../sample-data"))
     
     # Move into project dir
     os.chdir(args.dir)
