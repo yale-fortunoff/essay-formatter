@@ -23,7 +23,7 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     packages=setuptools.find_packages(),
-    include_data_files=True,
+    include_package_data=True,
     python_requires=">=3.6",
     entry_points = {
         'console_scripts': ['essay-formatter=essay_formatter.__main__:main'],
