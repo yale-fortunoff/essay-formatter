@@ -12,6 +12,7 @@ def main(args):
     print()
     print("Initiating Critical Editions site")
     print("=================================")
+    print()
     
     if os.path.exists(args.dir):
         print(f" ! Error: Path already exists: {args.dir}")
@@ -44,3 +45,4 @@ def main(args):
     print()
     print("To view the site run:")
     print("\tessay-formatter serve build")
+    print()
