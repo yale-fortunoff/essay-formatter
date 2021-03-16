@@ -23,6 +23,9 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     packages=setuptools.find_packages(),
+    package_data={
+        "essay_formatter":"sample-data/**"
+    },
     python_requires=">=3.6",
     entry_points = {
         'console_scripts': ['essay-formatter=essay_formatter.__main__:main'],
