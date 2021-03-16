@@ -6,7 +6,6 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 requirements = open("./requirements.txt").read().splitlines()
 sample_data_files = glob.glob("essay_formatter/sample-data/**")
-print(f"Installing sample data files: {'\n-'.join(sample_data_files)}")
 
 setuptools.setup(
     name="essay-formatter", 
