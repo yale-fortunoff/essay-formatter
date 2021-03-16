@@ -23,7 +23,6 @@ essay-formatter serve build
 
 ## Data files
 
-
 ## Convert markdown file to html
 
 ```
