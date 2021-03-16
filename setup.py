@@ -25,7 +25,7 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     packages=setuptools.find_packages(),
-    data_files=("sample-data", sample_data_files),
+    data_files=[("sample-data", sample_data_files)],
     python_requires=">=3.6",
     entry_points = {
         'console_scripts': ['essay-formatter=essay_formatter.__main__:main'],
