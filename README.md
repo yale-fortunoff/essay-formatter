@@ -4,25 +4,27 @@
 
 ## Quickstart
 
-With your markdown, site settings and logo files (we'll get to those later) in `./site-content` run:
+```text
+$ pip install git+https://github.com/jakekara/essay-formatter
+$ essay-formatter init my-project
 
-```bash
-essay-formatter build ./site-content
+Initiating Critical Editions site
+=================================
+ 📂 Created directory my-project
+ 📄 Copied start content
+
+ ✨ Finished building project in my-project!
+
+To start hacking, type: 
+	cd "my-project"
+
+To build with start content, run:
+	 essay-formatter build content
+
+To view the site run:
+	essay-formatter serve build
+
 ```
-
-This will generate a site in `./build` which can be run with an http
-server. Because this is a react app using React Router, your server must be
-configured to redirect 404 to ./index.html, or else direct linking to your site
-will not work.
-
-You can run it with:
-
-```bash
-essay-formatter serve build
-```
-
-## Data files
-
 ## Convert markdown file to html
 
 ```
