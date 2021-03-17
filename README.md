@@ -66,6 +66,7 @@ All of the `.md` files in the content directory must begin with a code block of 
 
 `TODO - describe each property and whether it is required or optional`
 
+`TODO - describe how to add embedded video into footntes`
 
 ## Convert markdown file to html
 
