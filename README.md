@@ -60,17 +60,75 @@ Let's go through the contents:
   is run. You should replace these files with images and logos that are
   appropriate for your project.
 
-## Markdown formatting
+## settings.yaml
 
-All of the `.md` files in the content directory must begin with a code block of type `yaml:meta` containing certain metadata properties. For example, check out [chapter-1.md](./essay_formatter/sample-data/chapter-1.md).
+This file contains project-level metadata, as well as a list specifying the
+order in which essays (or "chapters" if you prefer) should appear on the index page.
 
-`TODO - describe each property and whether it is required or optional`
+Here's an example of [settings.yaml](./essay_formatter/sample-data/settings.yaml).
 
-`TODO - describe how to add embedded video into footntes`
-
-## Convert markdown file to html
-
+```yaml
+title: A book
+subtitle: A book by an author
+introCopy: This is where you can put a paragraph describing your project. Keep it short.
+homeLink: https://google.com
+callToAction: true
+impactImageCaption: "Photo: Here's where to put your image caption"
+organizationName: Your Org
+parentOrganizationName: Your University,
+parentOrganizationURL: https://google.com
+essayOrder:
+  - chapter-1
+  - chapter-2
 ```
+
+Each item in `essayOrder` corresponds to a `slug` specified in the essay's
+markdown file.  
+
+## Essay Markdown files
+
+All of the `.md` files in the content directory must begin with a code block of type `yaml:meta` containing certain metadata properties. For example, check out [chapter-1.md](./essay_formatter/sample-data/chapter-1.md), or see below:
+
+```yaml:meta
+supertitle: Chapter 1
+title: Actual chapter name
+author: John Doe
+publicationDate: Feb. 2021
+slug: chapter-1
+```  
+
+### Supported Markdown features
+
+The current version of this software supports a limited subset of Markdown features. It supports basic paragraphs, headings, blockquotes, as well as the extended markdown syntax for [footnotes](https://www.markdownguide.org/extended-syntax/#footnotes). Here's an example of a plain footnote:
+
+```markdown
+This is a sentence with a footnote.[^1]
+
+[^1]: Footnotes are a great feature, and very import in academic content.
+```
+
+In addition to these Markdown features, you may add embedded content to footnotes like so:
+
+~~~markdown
+This is a sentence with a footnote.[^1]
+
+[^1]: Footnotes are a great feature, and very import in academic content.
+
+```yaml:embed
+footnote: 1
+code: '<...>'
+```
+~~~
+
+## Convert individual files
+
+essay-formatter also has tools to convert individual files from html to
+Markdown, from markdown to html, and from html to json. These tools may be
+helpful for initilally preparing your data, if you have it in one form or
+another. (The particular flavor of JSON is a format used by
+[editor.js](https://editorjs.io/) and used by the underlying [critical edition client software](https://github.com/jakekara/critical-edition-viewer)).
+
+```text
 usage: essay-formatter markdown2html [-h] [-i INFILE] [-o OUTFILE]
 
 optional arguments:
@@ -83,7 +141,7 @@ optional arguments:
 
 ## Convert html file to json
 
-```
+```text
 usage: essay-formatter html2json [-h] [-i INFILE] [-o OUTFILE]
 
 optional arguments:
