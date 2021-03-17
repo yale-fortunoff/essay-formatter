@@ -120,13 +120,20 @@ code: '<...>'
 ```
 ~~~
 
-## Convert individual files
+## "2" subcommands
+
+The above documentation describes the most common uses of essay-formatter — the init, build, and serve subcommands.  
 
 essay-formatter also has tools to convert individual files from html to
-Markdown, from markdown to html, and from html to json. These tools may be
+Markdown (html2markdown), from markdown to html (markdown2html), and from html to json (html2json) — the "2" subcommands.  
+
+These tools may be
 helpful for initilally preparing your data, if you have it in one form or
 another. (The particular flavor of JSON is a format used by
 [editor.js](https://editorjs.io/) and used by the underlying [critical edition client software](https://github.com/jakekara/critical-edition-viewer)).
+
+The all follow the same basic usage pattern, taking an input file and producing an output file. The help for the markdown2html subcommand is listed below:
+
 
 ```text
 usage: essay-formatter markdown2html [-h] [-i INFILE] [-o OUTFILE]
@@ -138,17 +145,3 @@ optional arguments:
   -o OUTFILE, --outfile OUTFILE
                         output HTML file
 ```
-
-## Convert html file to json
-
-```text
-usage: essay-formatter html2json [-h] [-i INFILE] [-o OUTFILE]
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -i INFILE, --infile INFILE
-                        input HTML file
-  -o OUTFILE, --outfile OUTFILE
-                        output JSON file
-```
-
