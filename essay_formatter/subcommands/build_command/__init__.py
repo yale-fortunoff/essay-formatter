@@ -36,7 +36,12 @@ def main(args):
 
     if args.redownload or args.redownload_only:
         force = True
-    download_client(force=force)
+    
+    try:
+        download_client(force=force)
+    except Exception as e:
+        print(f" \N{fire} Error downloading site template: {e}")
+        exit(1)
 
     if args.redownload_only:
         return
@@ -47,12 +52,21 @@ def main(args):
     # temp_data_dir_name = temp_data_dir.name
 
     # Create json files from markdown
-    make_data_files(args.data_dir, temp_data_dir_name)
+    try:
+        make_data_files(args.data_dir, temp_data_dir_name)
+    except Exception as e:
+        print(f" \N{fire} Error generating files from content folder: {e}")
+        exit(1)
 
-    # Insert files into client
-    insert_data(temp_dir_name, "./build")
+    # Insert data and static into client template
+    try:
+        insert_data(temp_dir_name, "./build")
+        insert_static_files(args.data_dir, "./build")
+    except Exception as e:
+        print(f" \N{fire} Error inserting data into template folder: {e}")
 
-    # Insert static files if there are any
-    insert_static_files(args.data_dir, "./build")
+    print()
+    print(" \N{sparkles} Done! \N{sparkles}")
+    print()
 
     temp_dir.cleanup()

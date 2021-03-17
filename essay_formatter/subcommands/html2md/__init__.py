@@ -28,7 +28,6 @@ def main(args):
     except Exception as e:
         raise Exception(f"Could not convert file to Markdown: {e}")
 
-
     try:
         bytes_written = open(args.outfile, "w").write(md)
         print(f" \N{floppy disk} Saved file '{args.outfile}'")
