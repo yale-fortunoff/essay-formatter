@@ -36,7 +36,7 @@ def main(args):
 
     if args.redownload or args.redownload_only:
         force = True
-    
+
     try:
         download_client(force=force)
     except Exception as e:
