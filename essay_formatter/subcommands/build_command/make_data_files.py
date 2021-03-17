@@ -75,7 +75,7 @@ def make_data_files(markdown_dir: str, dest_dir: str):
     # the essays into the proper order
     if (
         "essayOrder" in config_data["projectData"]
-        or type(config_data["projectData"]["essayOrder"]) != list
+        and type(config_data["projectData"]["essayOrder"]) == list
     ):
         print(" \U0001F575 Found essay order in settings file")
         essay_ids = config_data["projectData"]["essayOrder"]
