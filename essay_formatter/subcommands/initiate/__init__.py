@@ -22,7 +22,7 @@ def main(args):
 
     try:
         os.makedirs(args.dir)
-        print(f" \N{open file folder} Created directory {args.dir}")
+        print(f" \U0001f4c2 Created directory {args.dir}")
     except Exception as e:
         print(f" ! Error: Could not make directory '{args.dir}': {e}")
         exit(1)
@@ -37,10 +37,10 @@ def main(args):
 
     # Copy the sample_data folder
     shutil.copytree(sample_dir, "content")
-    print(" \N{page facing up} Copied start content")
+    print(" \U0001f4c4 Copied start content")
 
     print()
-    print(f" \N{sparkles} Finished building project in {args.dir}!\n")
+    print(f" \u2728 Finished building project in {args.dir}!\n")
     print("To start hacking, type: ")
     print(f'\tcd "{args.dir}"')
     print()

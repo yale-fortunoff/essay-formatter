@@ -24,15 +24,15 @@ def main(args):
 
     try:
         md = html2markdown.convert(html)
-        print(" \N{butterfly} Converted HTML to Markdown")
+        print(" \u2705 Converted HTML to Markdown")
     except Exception as e:
         raise Exception(f"Could not convert file to Markdown: {e}")
 
     try:
         bytes_written = open(args.outfile, "w").write(md)
-        print(f" \N{floppy disk} Saved file '{args.outfile}'")
+        print(f" \U0001f4be Saved file '{args.outfile}'")
     except Exception as e:
         raise Exception(f"Could not write output to '{args.outfile}': {e}")
 
-    print(f" \N{sparkles} Done!")
+    print(f" \u2728 Done! \u2728")
     print()

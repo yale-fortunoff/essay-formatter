@@ -40,7 +40,7 @@ def main(args):
     try:
         download_client(force=force)
     except Exception as e:
-        print(f" \N{fire} Error downloading site template: {e}")
+        print(f" \U0001F525 Error downloading site template: {e}")
         exit(1)
 
     if args.redownload_only:
@@ -55,7 +55,7 @@ def main(args):
     try:
         make_data_files(args.data_dir, temp_data_dir_name)
     except Exception as e:
-        print(f" \N{fire} Error generating files from content folder: {e}")
+        print(f" \U0001F525 Error generating files from content folder: {e}")
         exit(1)
 
     # Insert data and static into client template
@@ -63,10 +63,10 @@ def main(args):
         insert_data(temp_dir_name, "./build")
         insert_static_files(args.data_dir, "./build")
     except Exception as e:
-        print(f" \N{fire} Error inserting data into template folder: {e}")
+        print(f" \U0001F525 Error inserting data into template folder: {e}")
 
     print()
-    print(" \N{sparkles} Done! \N{sparkles}")
+    print(" \u2728 Done! \u2728")
     print()
 
     temp_dir.cleanup()

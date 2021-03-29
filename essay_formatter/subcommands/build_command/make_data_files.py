@@ -88,4 +88,4 @@ def make_data_files(markdown_dir: str, dest_dir: str):
         print(" \U0001F6A8 Warning: Essay order is not defined in settings")
 
     open(config_file, "w").write(json.dumps(config_data, indent=2))
-    print(f" \N{memo} Wrote config file: {config_file}")
+    print(f" \U0001F4DD Wrote config file: {config_file}")
