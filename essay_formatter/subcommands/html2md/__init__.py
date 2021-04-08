@@ -18,7 +18,7 @@ def main(args):
     print()
 
     try:
-        html = open(args.infile).read()
+        html = open(args.infile, encoding="utf-8").read()
     except Exception as e:
         raise Exception(f"Could not open file '{args.infile}': {e}")
 
@@ -29,7 +29,7 @@ def main(args):
         raise Exception(f"Could not convert file to Markdown: {e}")
 
     try:
-        bytes_written = open(args.outfile, "w").write(md)
+        bytes_written = open(args.outfile, "w", encoding="utf-8").write(md)
         print(f" \U0001f4be Saved file '{args.outfile}'")
     except Exception as e:
         raise Exception(f"Could not write output to '{args.outfile}': {e}")

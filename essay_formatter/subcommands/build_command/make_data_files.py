@@ -20,13 +20,13 @@ def make_data_files(markdown_dir: str, dest_dir: str):
     if not os.path.exists(dest_dir):
         os.makedirs(dest_dir)
 
-    config_data = {"essays": []}
+    config_data = {"essays": [], "projectData": {}}
 
     # Load project config file if it exits
     project_settings = os.path.join(markdown_dir, "settings.yaml")
     if os.path.exists(project_settings):
         print(" * Found Project-level settings. Inserting into config.json")
-        project_data = load(open(project_settings).read(), Loader=Loader)
+        project_data = load(open(project_settings, encoding="utf-8").read(), Loader=Loader)
         config_data["projectData"] = project_data
 
     config_file = os.path.join(dest_dir, "config.json")
@@ -38,7 +38,7 @@ def make_data_files(markdown_dir: str, dest_dir: str):
         md_file_name = os.path.basename(md_file_path)
         json_file_name = f"{md_file_name[:-3]}.json"
         json_file_path = os.path.join(dest_dir, json_file_name)
-        md_content = open(md_file_path).read()
+        md_content = open(md_file_path, encoding="utf-8").read()
         html = marko.convert(md_content)
         soup = BeautifulSoup(html, "html.parser")
 
@@ -66,7 +66,7 @@ def make_data_files(markdown_dir: str, dest_dir: str):
 
         # Convert
         json_content = h2j(m2h(md_content))
-        bytes_written = open(json_file_path, "w").write(
+        bytes_written = open(json_file_path, "w", encoding="utf-8").write(
             json.dumps(json_content, indent=2)
         )
         print(f" + Wrote {bytes_written} bytes to {json_file_path}")
@@ -87,5 +87,5 @@ def make_data_files(markdown_dir: str, dest_dir: str):
     else:
         print(" \U0001F6A8 Warning: Essay order is not defined in settings")
 
-    open(config_file, "w").write(json.dumps(config_data, indent=2))
+    open(config_file, "w", encoding="utf-8").write(json.dumps(config_data, indent=2))
     print(f" \U0001F4DD Wrote config file: {config_file}")

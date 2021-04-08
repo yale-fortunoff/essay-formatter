@@ -1,5 +1,6 @@
 import argparse
 import argcomplete, argparse
+from .setup_utf8 import setup_utf8
 
 from .subcommands import (
     html2json,
@@ -12,6 +13,9 @@ from .subcommands import (
 
 
 def main():
+
+    setup_utf8()
+
     parser = argparse.ArgumentParser("essay-formatter")
 
     subparsers = parser.add_subparsers(dest="subcommand")

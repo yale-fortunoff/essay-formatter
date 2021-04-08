@@ -12,7 +12,7 @@ def register(parser: ArgumentParser):
 def main(args):
 
     try:
-        md = open(args.infile).read()
+        md = open(args.infile, encoding="utf-8").read()
     except Exception as e:
         raise Exception(f"Could not open file '{args.infile}': {e}")
 
@@ -22,6 +22,6 @@ def main(args):
         raise Exception(f"Could not convert markdown to html: {e}")
 
     try:
-        md = open(args.outfile, "w").write(html)
+        md = open(args.outfile, "w", encoding="utf-8").write(html)
     except Exception as e:
         raise Exception(f"Could not write to file '{args.outfile}: {e}")

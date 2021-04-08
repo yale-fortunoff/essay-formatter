@@ -13,7 +13,7 @@ def register(parser: ArgumentParser):
 def main(args):
 
     try:
-        html = open(args.infile).read()
+        html = open(args.infile, encoding="utf-8").read()
     except Exception as e:
         raise Exception(f"Could not open file '{args.infile}': {e}")
 
@@ -23,6 +23,6 @@ def main(args):
         raise Exception(f"Could not convert html to json: {e}")
 
     try:
-        open(args.outfile, "w").write(json.dumps(obj, indent=2))
+        open(args.outfile, "w", encoding="utf-8").write(json.dumps(obj, indent=2))
     except Exception as e:
         raise Exception("fCould not save result as JSON file: {e}")
