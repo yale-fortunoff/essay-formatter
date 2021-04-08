@@ -7,7 +7,7 @@ requirements = open("./requirements.txt", encoding="utf-8").read().splitlines()
 
 setuptools.setup(
     name="essay-formatter", 
-    version="0.0.1",
+    version="0.0.2",
     author="Jake Kara",
     author_email="jake@jakekara.com ",
     description="Markdown to JSON formatter for essays",
@@ -24,7 +24,7 @@ setuptools.setup(
     ],
     packages=setuptools.find_packages(),
     include_package_data=True,
-    python_requires=">=3.6",
+    python_requires=">=3.7",
     entry_points = {
         'console_scripts': ['essay-formatter=essay_formatter.__main__:main'],
     },
