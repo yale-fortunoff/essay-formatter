@@ -7,7 +7,7 @@ requirements = open("./requirements.txt", encoding="utf-8").read().splitlines()
 
 setuptools.setup(
     name="essay-formatter", 
-    version="0.0.2",
+    version="0.0.3",
     author="Jake Kara",
     author_email="jake@jakekara.com ",
     description="Markdown to JSON formatter for essays",
