@@ -6,9 +6,11 @@ import json
 def aviary_embed_code(data):
     try:
         url = f"https://fortunoff.aviaryplatform.com/c/{data['ead_id']}/{data['tape']}/?media_file=true&embed=true&t={data['start_time']}&e={data['end_time']}"
-        embed_code = '<iframe ' \
+        embed_code = '<div style="padding:56.25% 0 0 0;position:relative;overflow: hidden;width: 100%;">' \
+        + '<iframe ' \
         + ' style="position:absolute;top:0;left:0;bottom: 0;right: 0;width:100%;height:100%;" ' \
-        + f'src="{url}" allow="fullscreen" frameborder="0"></iframe>'
+        + f'src="{url}" allow="fullscreen" frameborder="0"></iframe>' \
+        + '</div>'
         ret = data
         ret["code"] = embed_code
         return ret
