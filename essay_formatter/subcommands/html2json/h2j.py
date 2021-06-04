@@ -3,6 +3,17 @@ from yaml import load, Loader
 
 import json
 
+def aviary_embed_code(data):
+    try:
+        url = f"https://fortunoff.aviaryplatform.com/c/{data['ead_id']}/{data['tape']}/?media_file=true&embed=true&t={data['start_time']}&e={data['end_time']}"
+        embed_code = f'<iframe src="{url}" allow="fullscreen" frameborder="0"></iframe>'
+        ret = data
+        ret["code"] = embed_code
+        return ret
+
+
+    except Exception as e:
+        raise Exception(f"Could not generate aviary embed code: '{e}'")
 
 def fn2j(footnotes):
     ret = []
@@ -79,6 +90,10 @@ def h2j(doc: str):
             code = el.code
             if code["class"][0] == "language-yaml:embed":
                 data = load(code.text, Loader=Loader)
+                embeds.append(data)
+            elif code["class"][0] == "language-yaml:embed:aviary:fortunoff":
+                data = load(code.text, Loader=Loader)
+                data = aviary_embed_code(data)
                 embeds.append(data)
             elif code["class"][0] == "language-yaml:meta":
                 data = load(code.text, Loader=Loader)
