@@ -95,6 +95,12 @@ def h2j(doc: str):
             if code["class"][0] == "language-yaml:embed":
                 data = load(code.text, Loader=Loader)
                 embeds.append(data)
+            elif code["class"][0] == "language-yaml:footnote":
+                print("Processing footnote metadata")
+                data = load(code.text, Loader=Loader)
+                if "code" not in data:
+                    data["code"] = None
+                embeds.append(data)
             elif code["class"][0] == "language-yaml:embed:aviary:fortunoff":
                 data = load(code.text, Loader=Loader)
                 data = aviary_embed_code(data)
@@ -143,17 +149,27 @@ def h2j(doc: str):
 
     # Now merge embeds in with footnotes
     for embed in embeds:
+        print(f"Processing embed: {embed}")
         for footnote in footnotes:
-            if str(footnote["data"]["label"]) == str(embed["footnote"]):
+            if str(footnote["data"]["id"]) == f'fn-{str(embed["footnote"])}':
+                print(f"Adding data to  footnote: {embed}")
                 footnote["data"]["embedCode"] = embed["code"]
+                if "label" in embed:
+                    footnote["data"]["label"] = embed["label"]
+                    print(f"Overwriting label with: {embed['label']}")
+                
+                
 
     # Now merge the footnotes list with the data, inserting footnotes after
     # the paragraph they appear in
     footnotes.reverse()
+    print(f"There are {len(footnotes)} footnotes")
     for fn in footnotes:
         label = fn["data"]["label"]
-        linkstr = f'<sup class="footnote-ref" id="fnref-{label}"><a href="#fn-{label}">'
-        if label == "v":
+        id = fn["data"]["id"].replace("fn-","")
+        linkstr = f'<sup class="footnote-ref" id="fnref-{id}"'
+        print(f"id: {id} linkstr: {linkstr}")
+        if id == "v":
             print(linkstr)
 
         for idx in list(range(len(ret))):
