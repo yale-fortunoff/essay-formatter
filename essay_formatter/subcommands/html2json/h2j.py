@@ -96,7 +96,7 @@ def h2j(doc: str):
                 data = load(code.text, Loader=Loader)
                 embeds.append(data)
             elif code["class"][0] == "language-yaml:footnote":
-                print("Processing footnote metadata")
+                # print("Processing footnote metadata")
                 data = load(code.text, Loader=Loader)
                 if "code" not in data:
                     data["code"] = None
@@ -149,14 +149,14 @@ def h2j(doc: str):
 
     # Now merge embeds in with footnotes
     for embed in embeds:
-        print(f"Processing embed: {embed}")
+        # print(f"Processing embed: {embed}")
         for footnote in footnotes:
             if str(footnote["data"]["id"]) == f'fn-{str(embed["footnote"])}':
-                print(f"Adding data to  footnote: {embed}")
+                # print(f"Adding data to  footnote: {embed}")
                 footnote["data"]["embedCode"] = embed["code"]
                 if "label" in embed:
                     footnote["data"]["label"] = embed["label"]
-                    print(f"Overwriting label with: {embed['label']}")
+                    # print(f"Overwriting label with: {embed['label']}")
                 
                 
 
@@ -168,7 +168,7 @@ def h2j(doc: str):
         label = fn["data"]["label"]
         id = fn["data"]["id"].replace("fn-","")
         linkstr = f'<sup class="footnote-ref" id="fnref-{id}"'
-        print(f"id: {id} linkstr: {linkstr}")
+        # print(f"id: {id} linkstr: {linkstr}")
         if id == "v":
             print(linkstr)
 
