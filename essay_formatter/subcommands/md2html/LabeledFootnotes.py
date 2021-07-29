@@ -29,7 +29,21 @@ class FootnoteDef(block.BlockElement):
     priority = 6
 
     def __init__(self, match):
-        self.label = helpers.normalize_label(match.group(1))
+        # self.label = helpers.normalize_label(match.group(1))
+        
+        raw_label = helpers.normalize_label(match.group(1))
+        if "=" in raw_label:
+            id, display_label = raw_label.split("=")
+        else:
+            display_label = raw_label
+            id = raw_label
+        self.label = raw_label
+        self.display = display_label
+        self.id = id
+
+        print(f"FootnoteDef setting label, id: '{display_label}', '{id}'")
+
+
         self._prefix = re.escape(match.group())
         self._second_prefix = r" {1,4}"
 
@@ -52,7 +66,20 @@ class FootnoteRef(inline.InlineElement):
     priority = 6
 
     def __init__(self, match):
-        self.label = helpers.normalize_label(match.group(1))
+        # self.label = helpers.normalize_label(match.group(1))
+
+        raw_label = helpers.normalize_label(match.group(1))
+        if "=" in raw_label:
+            id, display_label = raw_label.split("=")
+        else:
+            display_label = raw_label
+            id = raw_label
+
+        print(f"FootnoteRef setting label, id: '{display_label}', '{id}'")
+        self.label = raw_label
+        self.display = display_label
+        self.id = id
+
 
     @classmethod
     def find(cls, text):
@@ -68,12 +95,16 @@ class FootnoteRendererMixin:
         self.footnotes = []
 
     def render_footnote_ref(self, element):
+
+        print("Rendering ", element.label, element.id)
         if element.label not in self.footnotes:
             self.footnotes.append(element.label)
+        
         return (
-            '<sup class="footnote-ref" id="fnref-{lab}">'
-            '<a href="#fn-{lab}">{lab}</a></sup>'.format(
-                lab=self.escape_url(element.label)
+            '<sup class="footnote-ref" id="fnref-{id}">'
+            '<a href="#fn-{id}">{lab}</a></sup>'.format(
+                lab=self.escape_url(element.display),
+                id=self.escape_url(element.id)
             )
         )
 
@@ -82,13 +113,13 @@ class FootnoteRendererMixin:
 
     def _render_footnote_def(self, element):
         children = self.render_children(element).rstrip()
-        back = f'<a href="#fnref-{element.label}" class="footnote">&#8617;</a>'
+        back = f'<a href="#fnref-{element.id}" class="footnote">&#8617;</a>'
         if children.endswith("</p>"):
             children = re.sub(r"</p>$", f"{back}</p>", children)
         else:
             children = f"{children}<p>{back}</p>\n"
-        return '<li id="fn-{}">\n{}</li>\n'.format(
-            self.escape_url(element.label), children
+        return '<li id="fn-{}" data-label="{}">\n{}</li>\n'.format(
+            self.escape_url(element.id),  self.escape_url(element.display), children
         )
 
     def render_document(self, element):

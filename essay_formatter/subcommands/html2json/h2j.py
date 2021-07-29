@@ -25,7 +25,8 @@ def fn2j(footnotes):
     # print(f" + Found {len(items)} footnotes")
     for item in items:
         id = item.get("id")
-        label = str(id.replace("fn-", ""))
+        # label = str(id.replace("fn-", ""))
+        label = item.get("data-label")
         assert len(item.find_all("p")) == 1
 
         text = item.find_all("p")[0].decode_contents().strip()
