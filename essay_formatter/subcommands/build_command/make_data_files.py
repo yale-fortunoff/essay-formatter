@@ -5,10 +5,9 @@ from bs4 import BeautifulSoup
 from yaml import load, Loader
 import json
 
-import yaml
 from ..md2html import m2h
 from ..html2json import h2j
-
+from .load_project_settings import load_project_settings
 
 def get_metadata(code):
     if code["class"][0] == "language-yaml:meta":
@@ -21,15 +20,13 @@ def make_data_files(markdown_dir: str, dest_dir: str):
         os.makedirs(dest_dir)
 
     config_data = {"essays": [], "projectData": {}}
-
-    # Load project config file if it exits
-    project_settings = os.path.join(markdown_dir, "settings.yaml")
-    if os.path.exists(project_settings):
+    
+    project_settings = load_project_settings(markdown_dir)
+    if project_settings:
         print(" * Found Project-level settings. Inserting into config.json")
-        project_data = load(
-            open(project_settings, encoding="utf-8").read(), Loader=Loader
-        )
-        config_data["projectData"] = project_data
+        config_data["projectData"] = project_settings
+    else:
+        print(" ! Did not find project-level settings file.")
 
     config_file = os.path.join(dest_dir, "config.json")
 
