@@ -26,7 +26,9 @@ def make_data_files(markdown_dir: str, dest_dir: str):
     project_settings = os.path.join(markdown_dir, "settings.yaml")
     if os.path.exists(project_settings):
         print(" * Found Project-level settings. Inserting into config.json")
-        project_data = load(open(project_settings, encoding="utf-8").read(), Loader=Loader)
+        project_data = load(
+            open(project_settings, encoding="utf-8").read(), Loader=Loader
+        )
         config_data["projectData"] = project_data
 
     config_file = os.path.join(dest_dir, "config.json")

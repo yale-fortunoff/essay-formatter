@@ -3,21 +3,24 @@ from yaml import load, Loader
 
 import json
 
+
 def aviary_embed_code(data):
     try:
         url = f"https://fortunoff.aviaryplatform.com/c/{data['ead_id']}/{data['tape']}/?media_file=true&embed=true&t={data['start_time']}&e={data['end_time']}"
-        embed_code = '<div style="padding:56.25% 0 0 0;position:relative;overflow: hidden;width: 100%;">' \
-        + '<iframe ' \
-        + ' style="position:absolute;top:0;left:0;bottom: 0;right: 0;width:100%;height:100%;" ' \
-        + f'src="{url}" allow="fullscreen" frameborder="0"></iframe>' \
-        + '</div>'
+        embed_code = (
+            '<div style="padding:56.25% 0 0 0;position:relative;overflow: hidden;width: 100%;">'
+            + "<iframe "
+            + ' style="position:absolute;top:0;left:0;bottom: 0;right: 0;width:100%;height:100%;" '
+            + f'src="{url}" allow="fullscreen" frameborder="0"></iframe>'
+            + "</div>"
+        )
         ret = data
         ret["code"] = embed_code
         return ret
 
-
     except Exception as e:
         raise Exception(f"Could not generate aviary embed code: '{e}'")
+
 
 def fn2j(footnotes):
     ret = []
@@ -158,8 +161,6 @@ def h2j(doc: str):
                 if "label" in embed:
                     footnote["data"]["label"] = embed["label"]
                     # print(f"Overwriting label with: {embed['label']}")
-                
-                
 
     # Now merge the footnotes list with the data, inserting footnotes after
     # the paragraph they appear in
@@ -167,7 +168,7 @@ def h2j(doc: str):
     print(f"There are {len(footnotes)} footnotes")
     for fn in footnotes:
         label = fn["data"]["label"]
-        id = fn["data"]["id"].replace("fn-","")
+        id = fn["data"]["id"].replace("fn-", "")
         linkstr = f'<sup class="footnote-ref" id="fnref-{id}"'
         # print(f"id: {id} linkstr: {linkstr}")
         if id == "v":

@@ -1,4 +1,5 @@
 from marko import Markdown
+
 # from marko.ext.footnote import Footnote
 from .LabeledFootnotes import Footnote
 import re
