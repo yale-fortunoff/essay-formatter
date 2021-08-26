@@ -91,7 +91,6 @@ class FootnoteRendererMixin:
 
     def render_footnote_ref(self, element):
 
-        print("Rendering ", element.label, element.id)
         if element.label not in self.footnotes:
             self.footnotes.append(element.label)
 

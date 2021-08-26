@@ -9,6 +9,7 @@ from ..md2html import m2h
 from ..html2json import h2j
 from .load_project_settings import load_project_settings
 
+
 def get_metadata(code):
     if code["class"][0] == "language-yaml:meta":
         return load(code.text, Loader=Loader)
@@ -20,7 +21,7 @@ def make_data_files(markdown_dir: str, dest_dir: str):
         os.makedirs(dest_dir)
 
     config_data = {"essays": [], "projectData": {}}
-    
+
     project_settings = load_project_settings(markdown_dir)
     if project_settings:
         print(" * Found Project-level settings. Inserting into config.json")
