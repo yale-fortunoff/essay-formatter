@@ -10,6 +10,7 @@ def insert_static_files(source_dir, build_dir):
     dest_dir = os.path.abspath(build_dir)
     if os.path.exists(public_dir):
         print(" + Found public folder. Copying its contents as well.")
+        return_workdir = os.getcwd()
         os.chdir(public_dir)
         files = glob("**", recursive=True)
         for file in files:
@@ -22,6 +23,7 @@ def insert_static_files(source_dir, build_dir):
             else:
                 print(f"  * Copying file {file} => {dest_path}")
                 shutil.copy(file, dest_path)
+        os.chdir(return_workdir)
         # shutil.copytree(public_dir, os.path.join(build_dir))
     else:
         print(f" - Did not find a public folder at {public_dir}")
