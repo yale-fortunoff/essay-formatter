@@ -7,10 +7,10 @@ requirements = open("./requirements.txt", encoding="utf-8").read().splitlines()
 
 setuptools.setup(
     name="essay-formatter", 
-    version="0.0.5",
+    version="0.0.6",
     author="Jake Kara",
     author_email="jake@jakekara.com ",
-    description="Markdown to JSON formatter for essays",
+    description="Site builder for publishing critical editions and other footnote-rich papers",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/yale-fortunoff/essay-formatter",

@@ -1,6 +1,6 @@
 from argparse import ArgumentParser
-from essay_formatter.subcommands.build_command.update_site_title import (
-    update_site_title,
+from essay_formatter.subcommands.build_command.update_index_html import (
+    update_index_html,
 )
 from essay_formatter.subcommands.build_command.insert_static_files import (
     insert_static_files,
@@ -65,7 +65,7 @@ def main(args):
     try:
         insert_data(temp_dir_name, "./build")
         insert_static_files(args.data_dir, "./build")
-        update_site_title(args.data_dir, "./build")
+        update_index_html(args.data_dir, "./build")
     except Exception as e:
         print(f" \U0001F525 Error inserting data into template folder: {e}")
 
