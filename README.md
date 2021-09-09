@@ -75,8 +75,11 @@ homeLink: https://google.com
 callToAction: true
 impactImageCaption: "Photo: Here's where to put your image caption"
 organizationName: Your Org
-parentOrganizationName: Your University,
+parentOrganizationName: Your University
 parentOrganizationURL: https://google.com
+textOnlyIndexPage: false
+showBylinesOnIndexPage: true
+showSupertitlesOnIndexPage: true
 essayOrder:
   - chapter-1
   - chapter-2
