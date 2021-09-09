@@ -2,6 +2,12 @@
 
 > Build Critical Editions sites around your data
 
+## About
+
+This site builder is used to generate [https://editions.fortunoff.library.yale.edu](https://editions.fortunoff.library.yale.edu).
+
+It works by converting your configuration files into structured data designed to be read by the [Critical Editions Viewer](https://github.com/jakekara/critical-edition-viewer) app and then stuffing them into a new copy of the production build of that app. It is also being used to power two forthcoming Fortunoff publishing projects.
+
 ## Quickstart
 
 ```text
