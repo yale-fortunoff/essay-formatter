@@ -129,6 +129,23 @@ code: '<...>'
 ```
 ~~~
 
+In addition to numerically labeled footnotes, essay-formatter also supports
+footnotes that are given arbitrary string labels. They can even be non-unique,
+if you provide a unique id for each footnote. The syntax is:
+
+
+~~~markdown
+this is a labeled footnote[^10=Doe, 1998].
+
+[^10=Doe, 1998]: foo
+~~~~
+
+In the above example, "10" is the unique ID for the footnote and "Doe, 1998" is
+the footnote label that willbe rendered. Implementing this feature led to
+development of this open source
+[Marko extension](https://github.com/jakekara/marko-labeled-footnotes) for
+labeled footnotes.
+
 ## "2" subcommands
 
 The above documentation describes the most common uses of essay-formatter — the init, build, and serve subcommands.  
