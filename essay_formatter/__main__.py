@@ -9,6 +9,7 @@ from .subcommands import (
     build_command as build,
     serve,
     initiate,
+    fetch_data,
 )
 
 
@@ -20,7 +21,7 @@ def main():
 
     subparsers = parser.add_subparsers(dest="subcommand")
 
-    subcommands = [html2json, html2md, md2html, build, serve, initiate]
+    subcommands = [html2json, html2md, md2html, build, serve, initiate, fetch_data]
     for subcommand in subcommands:
         subcommand_parser = subparsers.add_parser(subcommand.subcommand_name)
         subcommand.register(subcommand_parser)

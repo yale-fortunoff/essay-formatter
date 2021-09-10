@@ -41,6 +41,6 @@ def update_index_html(markdown_dir: str, build_dir: str):
 
     if site_title is not None:
         ovewrite_site_title(site_title, build_dir)
-    
+
     if site_description is not None:
         overwrite_site_description(site_description, build_dir)
