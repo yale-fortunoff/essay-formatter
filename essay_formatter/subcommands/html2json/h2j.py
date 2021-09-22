@@ -30,20 +30,24 @@ def fn2j(footnotes):
         id = item.get("id")
         # label = str(id.replace("fn-", ""))
         label = item.get("data-label")
-        assert len(item.find_all("p")) == 1
 
         text = item.find_all("p")[0].decode_contents().strip()
+        text = ""
+        paragraphs = item.find_all("p")
+        for paragraph in paragraphs:
+            text += f"<p>{paragraph.decode_contents().strip()}</p>"
 
         # Remove the "↩" link at the end
-        # and remove mso styles from i tags
         html = BeautifulSoup(text, "html.parser")
-        for a in html:
-            if a.name == "a" and a.text == "↩":
+        for a in html.find_all("a"):
+            if a.text == "↩":
                 # Remove link
                 a.decompose()
-            if a.name == "i":
-                # Remove style
-                del a["style"]
+
+        # Remove mso styles from i tags
+        for i in html.find_all("i"):
+            # Remove style
+            del i["style"]
 
         text = str(html).strip()
         ret.append(

@@ -7,7 +7,7 @@ requirements = open("./requirements.txt", encoding="utf-8").read().splitlines()
 
 setuptools.setup(
     name="essay-formatter", 
-    version="0.0.6",
+    version="0.0.7",
     author="Jake Kara",
     author_email="jake@jakekara.com ",
     description="Site builder for publishing critical editions and other footnote-rich papers",

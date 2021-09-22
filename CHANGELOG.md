@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.0.7
+
+**Fix support for multiline footnotes** that were previously broken.
+
+**Add experimental beast-mode** to `html2markdown` module. This uses a more
+aggressive library to convert from html2markdown. It does not generate
+compatible markdown yet, so it's only useful for an initial pass at cleaning up an HTML source file.
+
 ## 0.0.6
 
 **Make hardcoded meta data configurable** by adding `siteTitle` and `siteDescription` in `settings.yaml`. These values are hardcoded in `index.html` and the App does update these with JS, but in contexts where the harcoded value is used, like share cards, that was insufficent on its own.
