@@ -146,6 +146,17 @@ development of this open source
 [Marko extension](https://github.com/jakekara/marko-labeled-footnotes) for
 labeled footnotes.
 
+Images are added like this:
+
+~~~markdown
+```yaml:block
+type: "image"
+data:
+    src: "https://example.com/path/to/img.jpg"
+    caption: 'Caption for the image goes here'
+```
+~~~
+
 ## "2" subcommands
 
 The above documentation describes the most common uses of essay-formatter — the init, build, and serve subcommands.  
