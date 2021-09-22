@@ -8,5 +8,6 @@ organizationName: Your Org
 parentOrganizationName: Your University,
 parentOrganizationURL: https://google.com
 essayOrder:
+  - getting-started
   - chapter-1
   - chapter-2
