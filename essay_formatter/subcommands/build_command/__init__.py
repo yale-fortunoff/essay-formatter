@@ -25,6 +25,11 @@ def register(parser: ArgumentParser):
         action="store_true",
         help="Redownload latest client without building",
     )
+    parser.add_argument(
+        "--data-only", action="store_true",
+
+        help="Build data folder only, not entire site [NOT IMPLEMENTED]"
+    )
 
 
 def main(args):
