@@ -128,8 +128,8 @@ def h2j(doc: str):
                     "data": {"text": el.decode_contents(), "level": level},
                 }
             )
-        elif el.name == "li":
-            pass
+        # elif el.name == "li":
+        #     pass
         elif el.name == "div" and el["class"][0] == "footnotes":
 
             notes = fn2j(el)
@@ -144,15 +144,39 @@ def h2j(doc: str):
             embeds.append(
                 {"code": el.decode_contents().strip(), "footnote": footnote_label}
             )
+        elif el.name in ["ol", "ul"]:
+                print()
+                print("<<<------------------------------------")
+                print(f"unsupported tag warning: {el.name}")
+
+                print("Using raw HTML:\n")
+
+                print(el)
+                # for ch in el.text.strip():
+                #     print(ch, ord(ch))
+                
+                print("------------------------------------>>>")
+
+                # copy raw HTML as is.
+                ret.append({
+                    "type": "paragraph",
+                    "data":{
+                        "paragraphType": "paragraph",
+                        "text": " ".join(str(el).split("\n"))
+                    }
+                })
         else:
             if el.name and len(el.text.strip()) > 0:
                 print()
                 print("<<<------------------------------------")
                 print(f"unsupported tag warning: {el.name}")
+
+                print("Discarding HTML:\n")
+
                 print(el)
                 # for ch in el.text.strip():
                 #     print(ch, ord(ch))
-
+                
                 print("------------------------------------>>>")
 
     # Now merge embeds in with footnotes
