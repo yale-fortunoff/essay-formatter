@@ -40,6 +40,41 @@ def test_footnote():
     assert output["blocks"][1]["type"] == "footnoteParagraph"
     assert output["blocks"][1]["data"]["label"] == "footnote"
 
+def test_ordered_list():
+    input = textwrap.dedent("""
+    Here's an orderd list:
+
+    1. with
+    2. three
+    3. items
+
+    That's it.
+    """)
+
+    output = m2j(input)
+
+    assert len(output["blocks"]) == 3, f"Did not create exactly three blocks { output }"
+    assert output["blocks"][1]["type"] == "paragraph"
+    assert output["blocks"][1]["text"] == "<ol><li>with</li><li>three</li><li>items</li></ol>"
+
+def test_unordered_list():
+    input = textwrap.dedent("""
+    Here's an unorderd list:
+
+    - with
+    - three
+    - items
+
+    That's it.
+    """)
+
+    output = m2j(input)
+
+    assert len(output["blocks"]) == 3, f"Did not create exactly three blocks { output }"
+    assert output["blocks"][1]["type"] == "paragraph"
+    assert output["blocks"][1]["text"] == "<ul><li>with</li><li>three</li><li>items</li></ul>"
+
+
 def test_labeled_footnote():
     input = textwrap.dedent("""
     Hello world. Here's a footnote [^3.13a=(13)]. 
@@ -56,4 +91,4 @@ def test_labeled_footnote():
     assert output["blocks"][1]["type"] == "footnoteParagraph"
     assert output["blocks"][1]["data"]["label"] == "(13)"
     assert output["blocks"][1]["data"]["id"] == "fn-3.13a"
-    assert output["blocks"][1]["data"]["text"] == "A footnote gives more detail about something from the main text."
+    assert output["blocks"][1]["data"]["text"] == "<p>A footnote gives more detail about something from the main text.</p>"
