@@ -93,6 +93,7 @@ def test_labeled_footnote():
 
 def test_aviary_embed():
 
+    # Output should look like this
     # {
     #   "type": "aviary",
     #   "data": {
@@ -103,6 +104,7 @@ def test_aviary_embed():
     #     "caption": "Test video from 00:10:00 to 00:10:20"
     #   }
     # }
+
     input = textwrap.dedent("""
     ```yaml:aviary
     ead_id: mssa.hvt.0237
