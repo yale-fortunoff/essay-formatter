@@ -30,6 +30,9 @@ def register(parser: ArgumentParser):
 
         help="Build data folder only, not entire site [NOT IMPLEMENTED]"
     )
+    parser.add_argument(
+        "--version", default="latest", help="Client build version number to use"
+    )
 
 
 def main(args):
@@ -46,7 +49,7 @@ def main(args):
         force = True
 
     try:
-        download_client(force=force)
+        download_client(force=force, version=args.version)
     except Exception as e:
         print(f" \U0001F525 Error downloading site template: {e}")
         exit(1)
