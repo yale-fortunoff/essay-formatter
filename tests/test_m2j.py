@@ -52,10 +52,9 @@ def test_ordered_list():
     """)
 
     output = m2j(input)
-
-    assert len(output["blocks"]) == 3, f"Did not create exactly three blocks { output }"
+    assert len(output["blocks"]) == 3, "Did not create exactly three blocks"
     assert output["blocks"][1]["type"] == "paragraph"
-    assert output["blocks"][1]["text"] == "<ol><li>with</li><li>three</li><li>items</li></ol>"
+    assert output["blocks"][1]["data"]["text"] == "<ol> <li>with</li> <li>three</li> <li>items</li> </ol>"
 
 def test_unordered_list():
     input = textwrap.dedent("""
@@ -69,10 +68,9 @@ def test_unordered_list():
     """)
 
     output = m2j(input)
-
-    assert len(output["blocks"]) == 3, f"Did not create exactly three blocks { output }"
+    assert len(output["blocks"]) == 3, "Did not create exactly three blocks"
     assert output["blocks"][1]["type"] == "paragraph"
-    assert output["blocks"][1]["text"] == "<ul><li>with</li><li>three</li><li>items</li></ul>"
+    assert output["blocks"][1]["data"]["text"] == "<ul> <li>with</li> <li>three</li> <li>items</li> </ul>"
 
 
 def test_labeled_footnote():
@@ -92,3 +90,37 @@ def test_labeled_footnote():
     assert output["blocks"][1]["data"]["label"] == "(13)"
     assert output["blocks"][1]["data"]["id"] == "fn-3.13a"
     assert output["blocks"][1]["data"]["text"] == "<p>A footnote gives more detail about something from the main text.</p>"
+
+def test_aviary_embed():
+
+    # Output should look like this
+    # {
+    #   "type": "aviary",
+    #   "data": {
+    #     "ead_id":"mssa.hvt.0237", 
+    #     "tape":2, 
+    #     "start_time": 600, 
+    #     "end_time": 620, 
+    #     "caption": "Test video from 00:10:00 to 00:10:20"
+    #   }
+    # }
+
+    input = textwrap.dedent("""
+    ```yaml:aviary
+    ead_id: mssa.hvt.0237
+    tape: 2
+    start_time: 600
+    end_time: 620
+    caption: Test video from 00:10:00 to 00:10:20
+    ```
+    """)
+    
+    output = m2j(input)
+
+    assert len(output["blocks"]) == 1, "did not create exactly one block"
+    assert output["blocks"][0]["type"] == "aviary"
+    assert output["blocks"][0]["data"]["ead_id"] == "mssa.hvt.0237"
+    assert output["blocks"][0]["data"]["tape"] == 2
+    assert output["blocks"][0]["data"]["start_time"] == 600
+    assert output["blocks"][0]["data"]["end_time"] == 620
+    assert output["blocks"][0]["data"]["caption"] == "Test video from 00:10:00 to 00:10:20"
