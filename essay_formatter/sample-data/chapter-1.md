@@ -23,6 +23,15 @@ Aliquam feugiat, erat eget accumsan aliquam, tellus quam pretium ex, vel rhoncus
 
 Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin ligula ipsum, blandit quis erat ac, aliquet gravida ex. Aenean pharetra egestas massa in scelerisque. Maecenas tristique dictum pellentesque. Donec rutrum volutpat feugiat. Ut eleifend velit in auctor scelerisque. Nam cursus, urna at sodales feugiat, turpis felis blandit leo, vulputate scelerisque felis nunc eu lorem.
 
+```yaml:aviary
+ead_id: mssa.hvt.0237
+tape: 2
+start_time: 600
+end_time: 620
+caption: Test video embed from 00:10:00 to 00:10:20
+```
+
+
 Aliquam et mollis nisl. Nullam consequat finibus libero in consequat. Phasellus at orci sed eros vestibulum pellentesque quis sit amet leo. Integer nec porttitor justo. Aliquam rhoncus nulla ac commodo fringilla. Donec aliquam arcu dui, non fermentum ante hendrerit at. Suspendisse aliquet accumsan ornare. Vestibulum tempus nisl nec ante condimentum, et dictum risus consequat.
 
 Aliquam porttitor commodo mauris quis volutpat. Vivamus ipsum purus, ultricies vel diam quis, commodo scelerisque felis. Vivamus vel mollis sapien. Praesent laoreet urna tincidunt turpis luctus dictum. Phasellus fringilla eros orci, at suscipit sem pulvinar et. Etiam eget leo in dolor hendrerit pellentesque. Proin eleifend sem eget ipsum vulputate, sed placerat libero semper. In euismod posuere ante nec gravida. Suspendisse pulvinar in libero vitae aliquet. Morbi a lacus tempus, mattis turpis sit amet, consectetur sapien.

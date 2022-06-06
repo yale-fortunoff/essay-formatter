@@ -119,6 +119,13 @@ def h2j(doc: str):
             elif code["class"][0] == "language-yaml:block":
                 data = load(code.text, Loader=Loader)
                 ret.append(data)
+            elif code["class"][0] == "language-yaml:aviary":
+                data = load(code.text, Loader=Loader)
+                data["type"] = "aviary"
+                ret.append({
+                    "type":"aviary",
+                    "data":data
+                    })
 
         elif el.name in ["h1", "h2", "h3", "h4", "h5", "h6"]:
             level = int(el.name[1])
