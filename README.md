@@ -212,6 +212,18 @@ data:
 ```
 ~~~
 
+Aviary embeds are added like this:
+
+~~~markdown
+```yaml:aviary
+ead_id: mssa.hvt.0237
+tape: 2
+start_time: 600
+end_time: 620
+caption: Test video embed from 00:10:00 to 00:10:20
+```
+~~~
+
 ## "2" subcommands
 
 The above documentation describes the most common uses of essay-formatter — the init, build, and serve subcommands.  
