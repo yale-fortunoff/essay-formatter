@@ -1,0 +1,38 @@
+[build-system]
+requires = ["hatchling","hatch-requirements-txt"]
+build-backend = "hatchling.build"
+
+[project]
+name = "essay-formatter"
+version = "1.0.0"
+authors = [
+  { name="Jake Kara", email="jake@jakekara.com" },
+]
+description = "Site builder for publishing critical editions and other footnote-rich papers"
+readme = "README.md"
+requires-python = ">=3.6"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dynamic = ["dependencies"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.metadata.hooks.requirements_txt]
+files = ["requirements.txt"]
+
+[options.package-data]
+margo_parser = ['tokenizer/margo.lark']
+
+[project.urls]
+"Homepage" = "https://github.com/yale-fortunoff/essay-formatter/"
+"Bug Tracker" = "https://github.com/yale-fortunoff/essay-formatter/issues"
+
+[project.scripts]
+essay-formatter = "essay_formatter.__main__:main"
+
+[tool.black]
+line-length = 80
